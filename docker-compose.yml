@@ -1,0 +1,72 @@
+version: "3.9"
+
+services:
+  # Nodo 1 — Tiendas Norte y Centro (shard principal)
+  mongo-nodo1:
+    image: mongo:7
+    container_name: oxxo_nodo1
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_nodo1:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: oxxo2026
+    networks:
+      - oxxo_net
+    restart: unless-stopped
+
+  # Nodo 2 — Tiendas Sur, Este y Oeste
+  mongo-nodo2:
+    image: mongo:7
+    container_name: oxxo_nodo2
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_nodo2:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: oxxo2026
+    networks:
+      - oxxo_net
+    restart: unless-stopped
+
+  # Nodo 3 — Tiendas Universidad, Insurgentes, Tecnológico, Alameda y Jardines
+  mongo-nodo3:
+    image: mongo:7
+    container_name: oxxo_nodo3
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo_nodo3:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: oxxo2026
+    networks:
+      - oxxo_net
+    restart: unless-stopped
+
+  # Nodo 4 — Réplica global (respaldo de todos los nodos)
+  mongo-nodo4:
+    image: mongo:7
+    container_name: oxxo_nodo4
+    ports:
+      - "27020:27017"
+    volumes:
+      - mongo_nodo4:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: oxxo2026
+    networks:
+      - oxxo_net
+    restart: unless-stopped
+
+volumes:
+  mongo_nodo1:
+  mongo_nodo2:
+  mongo_nodo3:
+  mongo_nodo4:
+
+networks:
+  oxxo_net:
+    driver: bridge
