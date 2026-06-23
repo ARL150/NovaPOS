@@ -345,9 +345,11 @@ Los usuarios se crean al inicializar la base de datos (seed). Credenciales de ej
 
 ## Integrantes del equipo
 
-> *(Completar con los nombres del equipo)*
 
 - Abraham Robledo
+- Alejandro Cedeño
+- Saul Alvarez 
+- Laura Jaretzi Domínguez
 
 ---
 
